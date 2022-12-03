@@ -9,6 +9,9 @@ public class Inventory {
     }
 
     public int getCalories() {
-        return 0;
+        if (caloryList.isEmpty()) {
+            return 0;
+        }
+        return 1;
     }
 }
