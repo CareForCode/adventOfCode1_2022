@@ -15,7 +15,10 @@ class CaloryCalculatorTest {
     private static Stream<Arguments> getCaloriesValues() {
         return Stream.of(
                 Arguments.of(Collections.emptyList(), 0),
-                Arguments.of(Collections.singletonList(1), 1)
+                Arguments.of(Collections.singletonList(1), 1),
+                Arguments.of(List.of(1,2), 3),
+                Arguments.of(List.of(1000,2000,3000), 6000),
+                Arguments.of(List.of(5000,6000), 11000)
         );
     }
 

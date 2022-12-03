@@ -9,9 +9,6 @@ public class Inventory {
     }
 
     public int getCalories() {
-        if (caloryList.isEmpty()) {
-            return 0;
-        }
-        return 1;
+        return caloryList.stream().mapToInt(value -> value).sum();
     }
 }
