@@ -38,8 +38,25 @@ class CaloryCalculatorTest {
 
     @Test
     void result1() {
+        List<Integer> caloryList = getCaloryList();
+        int highestCalories = caloryList.stream().mapToInt(value -> value).max().orElse(0);
+
+        assertThat(highestCalories).isEqualTo(68802);
+    }
+
+    @Test
+    void result2() {
+        List<Integer> caloryList = getCaloryList();
+        int highestCalories = caloryList.stream().mapToInt(value -> value).max().orElse(0);
+        caloryList.removeIf(integer -> integer.equals(highestCalories));
+        int secondHighestCalories = caloryList.stream().mapToInt(value -> value).max().orElse(0);
+        caloryList.removeIf(integer -> integer.equals(secondHighestCalories));
+        int thirdHighestCalories = caloryList.stream().mapToInt(value -> value).max().orElse(0);
+        assertThat(highestCalories + secondHighestCalories + thirdHighestCalories).isEqualTo(68802);
+    }
+
+    private static List<Integer> getCaloryList() {
         BufferedReader reader;
-        int totalSum = 0;
 
         List<Integer> caloryList = new ArrayList<>();
         try {
@@ -61,8 +78,6 @@ class CaloryCalculatorTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int highestCalories = caloryList.stream().mapToInt(value -> value).max().orElse(0);
-
-        assertThat(highestCalories).isEqualTo(68802);
+        return caloryList;
     }
 }
